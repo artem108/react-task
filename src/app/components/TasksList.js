@@ -1,7 +1,7 @@
 import React from 'react'
 import Task from './Task'
 
-const TasksList = ({isLoad, tasks, isErr, adminMode}) => {
+const TasksList = ({ isLoad, tasks, isErr, adminMode, done }) => {
   return (
     <div>
       {
@@ -17,6 +17,7 @@ const TasksList = ({isLoad, tasks, isErr, adminMode}) => {
                 deleteTask={this.deleteTask}
                 imgPath={item.image_path}
                 adminMode={adminMode}
+                done={done}
                 />)
       }
       {

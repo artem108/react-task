@@ -19,6 +19,7 @@ class CreateTask extends Component {
       text: '',
       image: ''
     },
+    showModal: false,
     hasErrors: false
   }
 
@@ -30,29 +31,38 @@ class CreateTask extends Component {
 
   }
 
+  toggleModal = ev => {
+    ev.preventDefault()
+    this.setState({showModal: !this.state.showModal})
+  }
+
   onChange = ev => {
     let value = ev.target.value
     const name = ev.target.name
 
-    if (name === 'image') {
+    if (name === 'image') 
       value = ev.target.files[0]
-    }
+
     this.setState({[name]: value})
   }
 
   render() {
+    const { formErrors, showModal } = this.state
+
     return (
-    <section className="crearte-task-container">
-    <h3>Add task</h3>
-      <CreateTaskForm
-          addTask={this.addTask}
-          values={this.state}
-          error={this.state.error}
-          onChange={this.onChange}
-          formErrors={this.state.formErrors}
-        />
-        <FormError formErrors={this.state.formErrors} />
-    </section>
+      <section className="crearte-task-container">
+      <h3>Add task</h3>
+        <CreateTaskForm
+            addTask={this.addTask}
+            values={this.state}
+            error={this.state.error}
+            onChange={this.onChange}
+            formErrors={formErrors}
+            showModal={showModal}
+            toggleModal={this.toggleModal}
+          />
+          <FormError formErrors={this.state.formErrors} />
+      </section>
     );
   }
 }

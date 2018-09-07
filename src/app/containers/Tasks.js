@@ -12,9 +12,19 @@ class Tasks extends Component {
     this.props.dispatch(getTasks())
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.tasks.length < this.props.tasks)
+    console.log('update');
+    // this.props.dispatch(getTasks())
+  }
+
   onChange = ev => {
     const value = ev.target.value
     this.setState({sortValue: value})
+  }
+
+  done = ev => {
+    console.log(ev.target.id);
   }
 
   sortByVal = () => {
@@ -36,6 +46,7 @@ class Tasks extends Component {
             isLoad={isLoad}
             isErr={isErr}
             adminMode={adminMode}
+            done={this.done}
           />
         </section>
     );
