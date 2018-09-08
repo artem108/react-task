@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal';
 import { connect } from 'react-redux'
-import { onAdminMode } from '../modules/index'
+import { onAdminMode } from '../actionCreators/actionCreators'
 import HeaderLogIn from '../components/HeaderLogIn'
 
 class Header extends Component {
@@ -12,9 +12,7 @@ class Header extends Component {
     errText: ''
   }
 
-  toggleModal = () => {
-    this.setState({showModal: !this.state.showModal})
-  }
+  toggleModal = () => this.setState({showModal: !this.state.showModal})
 
   onChange = ev => {
     const value = ev.target.value
@@ -26,7 +24,7 @@ class Header extends Component {
   submit = () => {
     const { login, password } = this.state
 
-    // if (login === 'admin' && password === '123' ) {
+    if (login === 'admin' && password === '123' ) {
       this.props.dispatch(onAdminMode())
       this.toggleModal()
       this.setState({
@@ -34,9 +32,9 @@ class Header extends Component {
         password: '',
         errText: ''
       })
-    // } else {
-    //   this.setState({errText: 'Wrong password or login'})
-    // }
+    } else {
+      this.setState({errText: 'Wrong password or login'})
+    }
   }
 
 render() {

@@ -1,7 +1,7 @@
 import React from 'react'
 import Task from './Task'
 
-const TasksList = ({ isLoad, tasks, isErr, adminMode, done }) => {
+const TasksList = ({ isLoad, tasks, isErr, adminMode, done, edit, editing }) => {
   return (
     <div>
       {
@@ -18,10 +18,12 @@ const TasksList = ({ isLoad, tasks, isErr, adminMode, done }) => {
                 imgPath={item.image_path}
                 adminMode={adminMode}
                 done={done}
-                />)
+                editing={editing}
+                edit={edit}
+              />)
       }
       {
-        tasks.length ? null : <h3 className="err-text">Nothing found:(</h3>
+        // !isLoad && tasks.length ? null : <h3 className="err-text">Nothing found:(</h3>
       }
       {
         isErr && <h3 className="err-text">Something went wrong:(</h3>

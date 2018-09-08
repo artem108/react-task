@@ -20,15 +20,15 @@ const HeaderLogIn = ({ toggleModal, onChange, submit, showModal, errText }) => {
           style={customStyles()}
         >
         <section className="login-admin">
-        <h3 className="err-text">{errText}</h3>
+          <h3 className="err-text">{errText}</h3>
           <button onClick={toggleModal}>Exit</button>
-          Login:
+            Login:
           <input type="text" name="login" onChange={onChange}/>
-          Password:
+            Password:
           <input type="text" name="password" onChange={onChange}/>
           <button onClick={submit}>Submit</button>
         </section>
-        </Modal>
+      </Modal>
     </header>
     )
 }

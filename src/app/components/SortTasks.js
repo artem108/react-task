@@ -10,7 +10,7 @@ const SortTasks = ({ sortBy, sortValue, sortByVal, onChange }) => {
       <button onClick={sortByVal}>Sort</button>
     </section>
     </div>
-)
+  )
 }
 
 export default SortTasks

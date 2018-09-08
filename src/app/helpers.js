@@ -1,16 +1,4 @@
 
-export const createTaskObj = (id, text) => {
-  return { id, text }
-}
-
-export const tasksWithoutDelete = (id, tasks) => {
-
-  // let deletItem
-  //   if (tasks.length < 1) deletItem = tasks.splice(id, 1)
-  //   else deletItem = tasks.splice(0, 1)
-  //
-  //   return [...tasks]
-}
 export const customStyles = () => {
   return {
     content : {
@@ -20,10 +8,18 @@ export const customStyles = () => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)'
+      }
     }
   }
-  }
 
+export const createPaginate = (page, rows) => {
+    const newPage = page + 1
+    const countItems = 10
+    const first = rows.splice(newPage * countItems, rows.size - newPage * countItems)
+    const second = first.splice(0, newPage * countItems - countItems)
+
+    return second
+  }
 
 export const validateForm = (form) => {
 

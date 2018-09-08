@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CreateTaskForm from '../components/CreateTaskForm'
 import Task from '../components/Task'
-import { createTaks, deleteTaks, getTasks } from '../modules/index'
+import { createTaks, deleteTaks, getTasks } from '../actionCreators/actionCreators'
 import { validateForm } from '../helpers'
 import FormError from '../components/FormError'
 
@@ -28,7 +28,6 @@ class CreateTask extends Component {
       const isValid = validateForm(this.state)
       if (isValid.hasErrors) this.setState({formErrors: isValid.formErrors})
       else this.props.dispatch(createTaks(isValid))
-
   }
 
   toggleModal = ev => {
@@ -40,7 +39,7 @@ class CreateTask extends Component {
     let value = ev.target.value
     const name = ev.target.name
 
-    if (name === 'image') 
+    if (name === 'image')
       value = ev.target.files[0]
 
     this.setState({[name]: value})

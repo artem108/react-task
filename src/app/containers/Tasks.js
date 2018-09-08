@@ -2,20 +2,28 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TasksList from '../components/TasksList'
 import SortTasks from '../components/SortTasks'
-import { getTasks, sortBy } from '../modules/index'
+import { getTasks, sortBy } from '../actionCreators/actionCreators'
+import { createPaginate } from '../helpers'
 
 class Tasks extends Component {
 
-  state = { sortValue: ''}
+  state = {
+    sortValue: '',
+    editing: false,
+    total: 1,
+    current: 1,
+    visiblePage: 3,
+    rowsPaginate: []
+  }
 
   componentDidMount() {
     this.props.dispatch(getTasks())
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.tasks.length < this.props.tasks)
-    console.log('update');
-    // this.props.dispatch(getTasks())
+    const { tasks } = this.props
+    if (prevProps.tasks.length < tasks.length)
+      this.props.dispatch(getTasks())
   }
 
   onChange = ev => {
@@ -27,16 +35,20 @@ class Tasks extends Component {
     console.log(ev.target.id);
   }
 
+  edit = () => {
+    this.setState({editing: !this.state.editing})
+  }
+
   sortByVal = () => {
     const { sortValue } = this.state
-      if (sortValue) this.props.dispatch(sortBy(sortValue))
+    if (sortValue) this.props.dispatch(sortBy(sortValue))
 
     this.setState({sortValue: ''})
   }
 
   render() {
     const { tasks, isLoad, isErr, adminMode } = this.props
-    const { sortValue } = this.state
+    const { sortValue, editing } = this.state
 
       return (
         <section className="task-container">
@@ -47,6 +59,8 @@ class Tasks extends Component {
             isErr={isErr}
             adminMode={adminMode}
             done={this.done}
+            edit={this.edit}
+            editing={editing}
           />
         </section>
     );

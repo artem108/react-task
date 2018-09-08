@@ -7,7 +7,7 @@ const CreateTaskForm = ({ values, addTask, showModal, onChange, formErrors, togg
   return (
     <form className="create-input-container" onChange={onChange}>
       <section>
-        <label htmlFor="username">username</label>
+        <label htmlFor="username">Username</label>
         <input className={formErrors.username ? 'error' : ''} type="text" name="username" defaultValue={values.username}/>
       </section>
       <section>
@@ -23,16 +23,19 @@ const CreateTaskForm = ({ values, addTask, showModal, onChange, formErrors, togg
         <input className={formErrors.image ? 'error' : ''} type="file" name="image"/>
       </section>
       <button onClick={addTask}>Add</button>
-      <button onClick={toggleModal}>Preview</button>
-      <Modal
-          isOpen={showModal}
-          contentLabel="Example Modal"
-          style={customStyles()}
-          ariaHideApp={false}
-        >
-          <Task text={values.text} id={1} imgPath={values.image}/>
-            <button onClick={toggleModal}>Ok</button>
-      </Modal>
+      {
+        values.text.length &&
+        <button onClick={toggleModal}>Preview</button>
+      }
+        <Modal
+            isOpen={showModal}
+            contentLabel="Example Modal"
+            style={customStyles()}
+            ariaHideApp={false}
+          >
+            <Task text={values.text} id={1} imgPath={values.image}/>
+              <button onClick={toggleModal}>Ok</button>
+        </Modal>
     </form>
   )
 }
