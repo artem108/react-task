@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://artem108.github.io/react-task",
+  "engines": {
+    "npm": "4.0.2",
+    "node": "8.11.3"
+    },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.4.2",
